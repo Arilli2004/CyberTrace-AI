@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+*.egg-info/
+
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+.next/
+.nuxt/
+.output/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Uploads & Generated
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/logs/*
+!backend/logs/.gitkeep
+reports/generated/*
+!reports/generated/.gitkeep
+ai/vector_db/*
+!ai/vector_db/.gitkeep
+ai/embeddings/*
+!ai/embeddings/.gitkeep
+database/backups/*
+!database/backups/.gitkeep
+
+# Secrets
+*.pem
+*.key
+*.cert
+secrets/
