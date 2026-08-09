@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2026-07-28T09:12:01Z",
+    "event_type": "SSH Login Failure",
+    "user": "root",
+    "host": "srv-linux-01",
+    "ip": "203.0.113.50",
+    "severity": "high",
+    "description": "Failed password for root from 203.0.113.50 port 44892 ssh2"
+  },
+  {
+    "timestamp": "2026-07-28T09:14:22Z",
+    "event_type": "SSH Login Success",
+    "user": "admin",
+    "host": "srv-linux-01",
+    "ip": "203.0.113.50",
+    "severity": "low",
+    "description": "Accepted password for admin from 203.0.113.50 port 44910 ssh2"
+  },
+  {
+    "timestamp": "2026-07-28T09:15:01Z",
+    "event_type": "Sudo Command",
+    "user": "admin",
+    "host": "srv-linux-01",
+    "severity": "medium",
+    "description": "admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/bin/bash"
+  }
+]
