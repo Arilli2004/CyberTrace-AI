@@ -1,0 +1,5 @@
+timestamp,event_id,event_type,user,host,process,source_ip,destination_ip,severity,description
+2026-08-01T10:00:00Z,4624,AUTH_SUCCESS,admin,DC-01,winlogon.exe,192.168.1.100,10.0.0.5,LOW,Successful user authentication
+2026-08-01T10:05:00Z,4672,PRIVILEGE_ESCALATION,admin,DC-01,cmd.exe,192.168.1.100,10.0.0.5,HIGH,Administrator privileges assigned to user
+2026-08-01T10:10:00Z,4688,PROCESS_SPAWN,admin,DC-01,powershell.exe,192.168.1.100,10.0.0.5,MEDIUM,Process powershell.exe executed with elevated rights
+2026-08-01T10:15:00Z,5145,DATA_EXFILTRATION,admin,DC-01,powershell.exe,192.168.1.100,198.51.100.45,CRITICAL,Sensitive archive sensitive_export.zip copied to external IP 198.51.100.45

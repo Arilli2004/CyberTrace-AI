@@ -1,0 +1,4 @@
+Aug  1 13:00:01 server01 sshd[1234]: Accepted password for admin from 192.168.1.50 port 44321 ssh2
+Aug  1 13:05:12 server01 sudo: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/bin/bash
+Aug  1 13:10:45 server01 kernel: [123456.789] USB 2-0: Mass storage device connected (Kingston DataTraveler)
+Aug  1 13:15:20 server01 systemd: Started Malicious Background Service.
