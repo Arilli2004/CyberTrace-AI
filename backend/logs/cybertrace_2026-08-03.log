@@ -1,0 +1,1246 @@
+2026-08-03 11:49:05 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:49:41 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:49:44 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:53:17 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:54:02 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:54:03 | WARNING | passlib.handlers.bcrypt:_load_backend_mixin:622 | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 320
+               │     └ 3
+               └ <function _main at 0x0000025C8647DBC0>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 320
+           │    └ <function BaseProcess._bootstrap at 0x0000025C86317D70>
+           └ <SpawnProcess name='SpawnProcess-4' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 320, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x0000025C86317110>
+    └ <SpawnProcess name='SpawnProcess-4' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x0000025C88948C20>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-4' parent=19636 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-4' parent=19636 started>
+    │    └ <function subprocess_started at 0x0000025C887E7C10>
+    └ <SpawnProcess name='SpawnProcess-4' parent=19636 started>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=640, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x0000025C88948D70>>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\server.py", line 77, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x0000025C885F6DA0>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x0000025C88948C20>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x0000025C88948D70>
+           │           │    │             └ [<socket.socket fd=640, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x0000025C887CAE50>
+           │           └ <uvicorn.server.Server object at 0x0000025C88948D70>
+           └ <function run at 0x0000025C86D8CA90>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x0000025C8895B100>
+           │      └ <function Runner.run at 0x0000025C86D8CEB0>
+           └ <asyncio.runners.Runner object at 0x0000025C88949BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000025C86D752D0>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000025C88949BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 706, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000025C86D75220>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 677, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000025C86D77320>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 2046, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000025C86ABF950>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Program Files\Python314\Lib\asyncio\events.py", line 94, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\lifespan\on.py", line 86, in main
+    await app(scope, self.receive, self.send)
+          │   │      │    │        │    └ <function LifespanOn.send at 0x0000025C893357A0>
+          │   │      │    │        └ <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>
+          │   │      │    └ <function LifespanOn.receive at 0x0000025C89335900>
+          │   │      └ <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>
+          │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000025C8C1E6900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 30, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+                 │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+                 │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+                 │    └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x0000025C8C1E6900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+                           │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+                           └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000025C8C1E7380>
+          └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\errors.py", line 151, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x0000025C8C1E7230>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000025C8C1E7380>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\cors.py", line 80, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000025C8C1E70E0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x0000025C8C1E7230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 49, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x0000025C8C1E6F90>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000025C8C1E70E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.routing.APIRouter object at 0x0000025C8C2CACF0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x0000025C8C1E6F90>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x0000025C8C2CACF0>>
+          └ <fastapi.routing.APIRouter object at 0x0000025C8C2CACF0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 2726, in app
+    await self.lifespan(scope, receive, send)
+          │    │        │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │        │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x0000025C8C1E67B0>>
+          │    │        └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <function Router.lifespan at 0x0000025C89AFD220>
+          └ <fastapi.routing.APIRouter object at 0x0000025C8C2CACF0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 638, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               │    │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               │    └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C31C880>
+               └ <fastapi.routing.APIRouter object at 0x0000025C8C2CACF0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25EF80>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C1E7620>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C31C670>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F0A0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C3202D0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C31C460>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F1C0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C320410>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C31C250>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F2E0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C2729E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C31C040>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F400>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C272B10>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C2E3950>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F640>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C25F530>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C2E3690>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x0000025C8C25F760>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C2CB460>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x0000025C89C6B230>
+               └ <function lifespan at 0x0000025C8C2E3D70>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object lifespan at 0x0000025C8C2F9B10>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x0000025C8C2CB570>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\main.py", line 24, in lifespan
+    await init_db()
+          └ <function init_db at 0x0000025C89C9E350>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\database\connection.py", line 72, in init_db
+    password_hash=hash_password("Admin@123"),
+                  └ <function hash_password at 0x0000025C8C12D850>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\core\security.py", line 20, in hash_password
+    return pwd_context.hash(password)
+           │           │    └ 'Admin@123'
+           │           └ <function CryptContext.hash at 0x0000025C8C12CBF0>
+           └ <CryptContext at 0x25c8c1006e0>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'Admin@123'
+           │      └ <classmethod(<function GenericHandler.hash at 0x0000025C8C0F5590>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'Admin@123'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x0000025C8C12F1C0>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x0000025C8C611E80>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x0000025C8C611E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x0000025C8C0F7E20>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x0000025C8C611E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x0000025C8C0F7B60>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x0000025C8C0F7B60>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x0000025C8C0F7B60>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x0000025C8C128040>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from 'C:\\Users\\Jagadeesh\\Desktop\\REC\\5th sem\\FOIA\\project\\CyberTrace-AI\\backend\\venv\\Lib\\site-pa...
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-08-03 11:54:14 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:54:49 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:54:49 | WARNING | passlib.handlers.bcrypt:_load_backend_mixin:622 | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 344
+               │     └ 3
+               └ <function _main at 0x00000258D0DEDBC0>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 344
+           │    └ <function BaseProcess._bootstrap at 0x00000258D0CB7D70>
+           └ <SpawnProcess name='SpawnProcess-5' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 320, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x00000258D0CB7110>
+    └ <SpawnProcess name='SpawnProcess-5' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x00000258D3AB8C20>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-5' parent=19636 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-5' parent=19636 started>
+    │    └ <function subprocess_started at 0x00000258D3157C10>
+    └ <SpawnProcess name='SpawnProcess-5' parent=19636 started>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=612, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x00000258D3AB8D70>>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\server.py", line 77, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x00000258D2F66DA0>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x00000258D3AB8C20>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x00000258D3AB8D70>
+           │           │    │             └ [<socket.socket fd=612, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x00000258D313EE50>
+           │           └ <uvicorn.server.Server object at 0x00000258D3AB8D70>
+           └ <function run at 0x00000258D2CCCA90>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x00000258D3ACB100>
+           │      └ <function Runner.run at 0x00000258D2CCCEB0>
+           └ <asyncio.runners.Runner object at 0x00000258D3AB9BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000258D2CB52D0>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000258D3AB9BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 706, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x00000258D2CB5220>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 677, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000258D2CB7320>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 2046, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000258D142F950>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Program Files\Python314\Lib\asyncio\events.py", line 94, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\lifespan\on.py", line 86, in main
+    await app(scope, self.receive, self.send)
+          │   │      │    │        │    └ <function LifespanOn.send at 0x00000258D3CA97A0>
+          │   │      │    │        └ <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>
+          │   │      │    └ <function LifespanOn.receive at 0x00000258D3CA9900>
+          │   │      └ <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>
+          │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x00000258D6B26900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 30, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+                 │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+                 │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+                 │    └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x00000258D6B26900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+                           │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+                           └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x00000258D6B27380>
+          └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\errors.py", line 151, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x00000258D6B27230>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x00000258D6B27380>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\cors.py", line 80, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x00000258D6B270E0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x00000258D6B27230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 49, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x00000258D6B26F90>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x00000258D6B270E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.routing.APIRouter object at 0x00000258D6C12CF0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x00000258D6B26F90>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x00000258D6C12CF0>>
+          └ <fastapi.routing.APIRouter object at 0x00000258D6C12CF0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 2726, in app
+    await self.lifespan(scope, receive, send)
+          │    │        │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │        │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x00000258D6B267B0>>
+          │    │        └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <function Router.lifespan at 0x00000258D446D220>
+          └ <fastapi.routing.APIRouter object at 0x00000258D6C12CF0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 638, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               │    │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               │    └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C5C7D0>
+               └ <fastapi.routing.APIRouter object at 0x00000258D6C12CF0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA6F80>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6B27620>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C5C5C0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA70A0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6C602D0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C5C3B0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA71C0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6C60410>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C5C1A0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA72E0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6BB29E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C27A00>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA7400>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6BB2B10>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C277F0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA7640>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6BA7530>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6C27530>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x00000258D6BA7760>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6C13460>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x00000258D45DB230>
+               └ <function lifespan at 0x00000258D6C27D70>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object lifespan at 0x00000258D6C39B10>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x00000258D6C13570>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\main.py", line 24, in lifespan
+    await init_db()
+          └ <function init_db at 0x00000258D460E140>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\database\connection.py", line 72, in init_db
+    password_hash=hash_password("Admin@123"),
+                  └ <function hash_password at 0x00000258D6A6D7A0>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\core\security.py", line 20, in hash_password
+    return pwd_context.hash(password)
+           │           │    └ 'Admin@123'
+           │           └ <function CryptContext.hash at 0x00000258D6A6CB40>
+           └ <CryptContext at 0x258d6a406e0>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'Admin@123'
+           │      └ <classmethod(<function GenericHandler.hash at 0x00000258D6A354E0>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'Admin@123'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x00000258D6A6F110>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x00000258D6FD1E80>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x00000258D6FD1E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x00000258D6A37D70>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x00000258D6FD1E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x00000258D6A37AB0>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x00000258D6A37AB0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x00000258D6A37AB0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x00000258D6A37ED0>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from 'C:\\Users\\Jagadeesh\\Desktop\\REC\\5th sem\\FOIA\\project\\CyberTrace-AI\\backend\\venv\\Lib\\site-pa...
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-08-03 11:55:43 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:55:44 | WARNING | passlib.handlers.bcrypt:_load_backend_mixin:622 | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 196
+               │     └ 3
+               └ <function _main at 0x000001E54FFDDBC0>
+  File "C:\Program Files\Python314\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 196
+           │    └ <function BaseProcess._bootstrap at 0x000001E54FEA7D70>
+           └ <SpawnProcess name='SpawnProcess-6' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 320, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x000001E54FEA7110>
+    └ <SpawnProcess name='SpawnProcess-6' parent=19636 started>
+  File "C:\Program Files\Python314\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x000001E552C98C20>, 'target': <bound method Server.run of <uvicorn.server.Server...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-6' parent=19636 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-6' parent=19636 started>
+    │    └ <function subprocess_started at 0x000001E552347C10>
+    └ <SpawnProcess name='SpawnProcess-6' parent=19636 started>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=608, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x000001E552C98D70>>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\server.py", line 77, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x000001E552196DA0>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x000001E552C98C20>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x000001E552C98D70>
+           │           │    │             └ [<socket.socket fd=608, family=2, type=1, proto=6, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x000001E55232EE50>
+           │           └ <uvicorn.server.Server object at 0x000001E552C98D70>
+           └ <function run at 0x000001E551F3CA90>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x000001E552CAB100>
+           │      └ <function Runner.run at 0x000001E551F3CEB0>
+           └ <asyncio.runners.Runner object at 0x000001E552C99BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001E551F252D0>
+           │    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001E552C99BE0>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 706, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001E551F25220>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 677, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001E551F27320>
+    └ <_WindowsSelectorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 2046, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001E55061F950>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Program Files\Python314\Lib\asyncio\events.py", line 94, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\lifespan\on.py", line 86, in main
+    await app(scope, self.receive, self.send)
+          │   │      │    │        │    └ <function LifespanOn.send at 0x000001E552E897A0>
+          │   │      │    │        └ <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>
+          │   │      │    └ <function LifespanOn.receive at 0x000001E552E89900>
+          │   │      └ <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>
+          │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001E555CF6900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 30, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+                 │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+                 │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001E555CF6900>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+                           │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+                           └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001E555CF7380>
+          └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\errors.py", line 151, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x000001E555CF7230>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001E555CF7380>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\cors.py", line 80, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001E555CF70E0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x000001E555CF7230>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 49, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001E555CF6F90>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001E555CF70E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │   └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <fastapi.routing.APIRouter object at 0x000001E555DD6F10>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x000001E555CF6F90>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │                │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │                └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x000001E555DD6F10>>
+          └ <fastapi.routing.APIRouter object at 0x000001E555DD6F10>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 2726, in app
+    await self.lifespan(scope, receive, send)
+          │    │        │      │        └ <bound method LifespanOn.send of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │        │      └ <bound method LifespanOn.receive of <uvicorn.lifespan.on.LifespanOn object at 0x000001E555CF67B0>>
+          │    │        └ {'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}, 'app': <fastapi.applications.FastAPI obj...
+          │    └ <function Router.lifespan at 0x000001E55364D220>
+          └ <fastapi.routing.APIRouter object at 0x000001E555DD6F10>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\starlette\routing.py", line 638, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               │    │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               │    └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555E287D0>
+               └ <fastapi.routing.APIRouter object at 0x000001E555DD6F10>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7AF80>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555CF7620>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555E285C0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B0A0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555E302D0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555E283B0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B1C0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555E30410>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555E281A0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B2E0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555D869E0>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555DF7A00>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B400>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555D86B10>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555DF77F0>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B640>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555D7B530>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555DF7530>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object _merge_lifespan_context.<locals>.merged_lifespan at 0x000001E555D7B760>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555DD7680>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\fastapi\routing.py", line 240, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+               │                └ <fastapi.applications.FastAPI object at 0x000001E5537BB230>
+               └ <function lifespan at 0x000001E555DF7D70>
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+                       │    └ <async_generator object lifespan at 0x000001E555E01BE0>
+                       └ <contextlib._AsyncGeneratorContextManager object at 0x000001E555DD7790>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\main.py", line 24, in lifespan
+    await init_db()
+          └ <function init_db at 0x000001E5537EE090>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\database\connection.py", line 72, in init_db
+    password_hash=hash_password("Admin@123"),
+                  └ <function hash_password at 0x000001E555C3D850>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\app\core\security.py", line 20, in hash_password
+    return pwd_context.hash(password[:72])
+           │           │    └ 'Admin@123'
+           │           └ <function CryptContext.hash at 0x000001E555C3CBF0>
+           └ <CryptContext at 0x1e555c106e0>
+
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'Admin@123'
+           │      └ <classmethod(<function GenericHandler.hash at 0x000001E555C01590>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'Admin@123'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x000001E555C3F1C0>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x000001E5561A5E80>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x000001E5561A5E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x000001E555C03E20>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x000001E5561A5E80>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x000001E555C03B60>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x000001E555C03B60>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x000001E555C03B60>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x000001E555C38040>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\utils\handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "C:\Users\Jagadeesh\Desktop\REC\5th sem\FOIA\project\CyberTrace-AI\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from 'C:\\Users\\Jagadeesh\\Desktop\\REC\\5th sem\\FOIA\\project\\CyberTrace-AI\\backend\\venv\\Lib\\site-pa...
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-08-03 11:58:18 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:59:23 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 11:59:53 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:52:30 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:52:35 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:52:44 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:52:50 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:52:58 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:53:05 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:56:38 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 12:56:39 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 12:56:39 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:03:59 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:04:30 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:04:45 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:04:45 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:04:46 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:08:08 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:08:20 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:08:27 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:08:41 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:08:49 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:08:59 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:09:08 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:09:18 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:09:27 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:10:59 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:11:02 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:11:34 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:11:36 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:12:05 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:12:15 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:12:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:12:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:12:17 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:12:17 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:12:41 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:12:42 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:12:42 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:12:43 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:12:43 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:12:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:12:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:15:15 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:15:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:15:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:15:17 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:15:17 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:15:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:15:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:16:47 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:16:58 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:17:36 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:17:45 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:17:46 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:17:47 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:17:47 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:17:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:17:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:17:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:22:17 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:22:25 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:22:33 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:22:44 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:22:51 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:22:57 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:05 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:10 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:21 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:31 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:42 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:49 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:23:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:02 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:08 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:41 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:47 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:54 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:24:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:25:20 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:25:28 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:25:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:25:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:25:30 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:25:30 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:25:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:25:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:25:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:25:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:25:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:27:49 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:27:50 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:27:51 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:27:51 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:27:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:27:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:27:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:27:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:27:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:27:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:31:21 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:31:27 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:31:36 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:31:48 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:31:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:04 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:13 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:22 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:37 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:47 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:32:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:33:19 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:33:42 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:33:49 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:33:56 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:33:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:33:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:33:58 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:33:58 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:33:59 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalize/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:34:01 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:01 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:01 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:34:31 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:34:32 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:32 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:32 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:32 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalize/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:34:43 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:34:47 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:34:51 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:34:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:34:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:34:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:34:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:34:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:55 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:55 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalize/normalized-events/1 "HTTP/1.1 404 Not Found"
+2026-08-03 13:34:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:34:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:34:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:35:02 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:35:08 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:35:08 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:35:09 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:35:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:35:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:35:34 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:35:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:35 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:35 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:35:48 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:35:53 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:35:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:35:55 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:35:55 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:35:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:56 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:35:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:57 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:35:58 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:35:58 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:35:58 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:36:18 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:36:30 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:36:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:36:31 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:36:32 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:36:33 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:36:33 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:36:33 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:36:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:37:50 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:37:51 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:37:51 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:37:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:37:52 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:37:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:37:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:37:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:37:53 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:37:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:37:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:37:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:37:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:37:54 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:42:12 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:42:21 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:42:32 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:42:41 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:42:52 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:01 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:13 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:23 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:30 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:37 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:43:45 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:44:14 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:44:40 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:44:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:45:09 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:45:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:45:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:45:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:45:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:45:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:45:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:16 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:45:43 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:45:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:45:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:45:44 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:12 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:46:22 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:46:33 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:46:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:46:34 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:46:35 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:46:36 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:46:36 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:46:36 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/1 "HTTP/1.1 200 OK"
+2026-08-03 13:46:37 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/statistics/1 "HTTP/1.1 200 OK"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:46:38 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:49:44 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:49:45 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:49:45 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:49:46 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:49:47 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:49:47 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:49:47 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/1 "HTTP/1.1 200 OK"
+2026-08-03 13:49:48 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/statistics/1 "HTTP/1.1 200 OK"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:49:49 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:50:59 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:04 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:10 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:22 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:28 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:34 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:43 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:51:52 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:52:00 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:52:10 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:52:44 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:52:55 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:53:04 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:53:17 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:53:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:53:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:53:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:22 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:22 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:53:23 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:23 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:53:24 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:24 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:24 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:53:26 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:26 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:26 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:53:40 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:53:41 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:53:41 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:53:41 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:02 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:54:13 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:54:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:54:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/csp/validate/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:15 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/status/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:17 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:54:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:18 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:19 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/statistics/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:20 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:21 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:21 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:21 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:39 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/csp/validate/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:54:40 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/status/1 "HTTP/1.1 200 OK"
+2026-08-03 13:54:56 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:55:08 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:55:08 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:55:09 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/csp/validate/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/status/1 "HTTP/1.1 200 OK"
+2026-08-03 13:55:10 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/results/1 "HTTP/1.1 200 OK"
+2026-08-03 13:55:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:11 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:55:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:12 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/1 "HTTP/1.1 200 OK"
+2026-08-03 13:55:13 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/statistics/1 "HTTP/1.1 200 OK"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:55:14 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:23 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-03 13:56:23 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/cases/ "HTTP/1.1 201 Created"
+2026-08-03 13:56:24 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/cases/?search=Malware "HTTP/1.1 200 OK"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/csp/validate/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/status/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:25 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/csp/results/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:26 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:26 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 400 Bad Request"
+2026-08-03 13:56:27 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:27 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 409 Conflict"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/graph/build/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:28 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/graph/statistics/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/normalize/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/normalized-events/1 "HTTP/1.1 200 OK"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/evidence/upload "HTTP/1.1 201 Created"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/parser/parse/1 "HTTP/1.1 202 Accepted"
+2026-08-03 13:56:29 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: GET http://test/api/parser/events/case/1 "HTTP/1.1 200 OK"

@@ -1,0 +1,14 @@
+2026-08-07 13:52:56 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-07 14:10:02 | INFO | app.core.logging:setup_logging:54 | Logging initialized | env=development | debug=True
+2026-08-07 14:10:02 | INFO | app.services.astar_service:run_astar:110 | Executing A* Search for Case ID 1 | Start: 'login' | Goal: 'usb_remove'
+2026-08-07 14:10:02 | INFO | app.services.astar_service:run_astar:130 | A* Search Succeeded | Case ID: 1 | Start: 'login' | Goal: 'usb_remove' | Visited Nodes: 4 | Total Cost: 3.0000 | Heuristic Cost: 1.0000 | Time: 0.036 ms
+2026-08-07 14:10:02 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/v1/ai/astar/run "HTTP/1.1 200 OK"
+2026-08-07 14:10:03 | INFO | app.services.astar_service:run_astar:110 | Executing A* Search for Case ID 1 | Start: 'login' | Goal: 'isolated_exfil'
+2026-08-07 14:10:03 | WARNING | app.services.astar_service:run_astar:120 | A* Search completed: No path found between 'login' and 'isolated_exfil' in Case ID 1. Visited 5 nodes.
+2026-08-07 14:10:03 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/v1/ai/astar/run "HTTP/1.1 400 Bad Request"
+2026-08-07 14:10:03 | WARNING | app.services.astar_service:run_astar:81 | A* Search failed: Start node 'non_existent_start' not found in Case 1.
+2026-08-07 14:10:03 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/v1/ai/astar/run "HTTP/1.1 404 Not Found"
+2026-08-07 14:10:04 | WARNING | app.services.astar_service:run_astar:89 | A* Search failed: Goal node 'non_existent_goal' not found in Case 1.
+2026-08-07 14:10:04 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/v1/ai/astar/run "HTTP/1.1 404 Not Found"
+2026-08-07 14:10:04 | WARNING | app.services.astar_service:run_astar:49 | A* Search failed: Case ID 999999 not found.
+2026-08-07 14:10:04 | INFO | httpx._client:_send_single_request:1740 | HTTP Request: POST http://test/api/v1/ai/astar/run "HTTP/1.1 404 Not Found"

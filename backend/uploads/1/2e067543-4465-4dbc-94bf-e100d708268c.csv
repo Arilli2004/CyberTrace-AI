@@ -1,0 +1,2 @@
+timestamp,hostname,username,action,src_ip,severity,message
+2026-08-03T12:00:00Z,FS-01,CORP\admin,LOGIN_OK,10.0.0.5,low,User logged in successfully

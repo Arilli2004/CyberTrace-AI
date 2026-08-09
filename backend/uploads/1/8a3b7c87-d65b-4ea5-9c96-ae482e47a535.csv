@@ -1,0 +1,2 @@
+timestamp,hostname,username,action,src_ip,severity,message
+2026-08-03T12:00:00Z,DC-01,admin,UserLogin,192.168.1.1,medium,User login successful
