@@ -1,4 +1,4 @@
 #!/bin/bash
-# CyberTrace AI — macOS Multi-Tab Startup Launcher Shorthand
+# CyberTrace AI — Cross-platform Startup Script Shorthand
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-"$DIR/start_cybertrace.command"
+bash "$DIR/start_cybertrace.command"

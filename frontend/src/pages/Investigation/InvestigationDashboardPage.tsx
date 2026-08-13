@@ -257,115 +257,165 @@ export default function InvestigationDashboardPage() {
           </div>
         )}
 
-        {/* Horizontal Timeline Container */}
+        {/* Tree Hierarchical Visualizer Container */}
         {!total ? (
           <div style={{ textAlign:'center', padding:'40px 20px', color:'var(--color-text-muted)', border:'2px dashed var(--color-border)', borderRadius:'var(--radius-md)' }}>
             <Shield size={36} style={{marginBottom:'8px',opacity:.4}}/><p style={{margin:0}}>No attack path data. Build a Knowledge Graph first.</p>
           </div>
         ) : (
-          <div ref={tlRef} style={{ display:'flex', alignItems:'center', overflowX:'auto', overflowY:'hidden', paddingBottom:'16px', paddingTop:'16px', gap:'0', scrollbarWidth:'thin' }}>
-            {stages.map((sg, i) => {
-              const active = i===step
-              const past = i<step
-              const Icon = nodeIcon(sg.node.type)
-              return (
-                <div key={sg.node.uuid_id} data-active={active?'true':'false'} style={{ display:'flex', alignItems:'center', flexShrink:0 }}>
-                  
-                  {/* Node Card */}
-                  <div onClick={()=>{setStep(i);setPlaying(false)}} style={{
-                    width:'165px',
-                    background: active ? 'var(--color-bg-elevated)' : past ? 'var(--color-bg-card)' : 'rgba(15,22,41,0.6)',
-                    border: `2px solid ${active ? SEV_COLOR[sg.severity] : past ? '#ef4444' : 'var(--color-border)'}`,
-                    borderRadius: 'var(--radius-md)',
-                    padding: '14px 12px',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    boxShadow: active ? `0 0 24px ${SEV_COLOR[sg.severity]}40` : past ? '0 0 10px rgba(239,68,68,0.15)' : 'none',
-                    animation: active ? 'nodeGlowPulse 2s infinite ease-in-out' : 'none',
-                  }}>
-                    {/* Radar Ring when Active */}
-                    {active && playing && (
-                      <div style={{ position:'absolute', inset:'-6px', borderRadius:'var(--radius-lg)', border:`2px solid ${SEV_COLOR[sg.severity]}`, animation:'nodeRadar 1.5s infinite ease-out', pointerEvents:'none' }} />
-                    )}
+          <div ref={tlRef} style={{ display:'flex', flexDirection:'column', gap:'20px', padding:'12px 0' }}>
+            {(() => {
+              const BOXES_PER_ROW = 4
+              const rowCount = Math.ceil(stages.length / BOXES_PER_ROW)
+              const rows: AttackStage[][] = []
+              for (let r = 0; r < rowCount; r++) {
+                rows.push(stages.slice(r * BOXES_PER_ROW, (r + 1) * BOXES_PER_ROW))
+              }
 
-                    {/* Step Tag */}
-                    {active ? (
-                      <div style={{ position:'absolute', top:'-10px', right:'8px', background:SEV_COLOR[sg.severity], color:'#fff', fontSize:'.55rem', fontWeight:900, padding:'2px 8px', borderRadius:'4px', textTransform:'uppercase', letterSpacing:'.05em', boxShadow:'0 2px 6px rgba(0,0,0,0.4)' }}>
-                        ACTIVE STEP #{i+1}
-                      </div>
-                    ) : past ? (
-                      <div style={{ position:'absolute', top:'-10px', right:'8px', background:'#ef4444', color:'#fff', fontSize:'.5rem', fontWeight:800, padding:'1px 6px', borderRadius:'3px', textTransform:'uppercase' }}>
-                        COMPROMISED
-                      </div>
-                    ) : null}
-
-                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
-                      <span style={{ fontSize:'.62rem', color:'var(--color-text-muted)', fontWeight:700, textTransform:'uppercase', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:'90px' }}>
-                        STAGE #{i+1}
+              return rows.map((rowStages, rIdx) => {
+                const isCurrentRowActive = step >= rIdx * BOXES_PER_ROW && step < (rIdx + 1) * BOXES_PER_ROW
+                return (
+                  <div key={`tree-row-${rIdx}`} style={{ display:'flex', flexDirection:'column', gap:'12px' }}>
+                    {/* Tree Level Header Badge */}
+                    <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                      <span style={{
+                        display:'inline-flex', alignItems:'center', gap:'6px',
+                        padding:'4px 12px', borderRadius:'6px', fontSize:'0.7rem', fontWeight:800,
+                        background: isCurrentRowActive ? 'rgba(6,182,212,0.15)' : 'var(--color-bg-elevated)',
+                        border: `1px solid ${isCurrentRowActive ? 'var(--color-cyan)' : 'var(--color-border)'}`,
+                        color: isCurrentRowActive ? 'var(--color-cyan)' : 'var(--color-text-muted)',
+                        letterSpacing:'0.04em'
+                      }}>
+                        <span style={{ width:'6px', height:'6px', borderRadius:'50%', background: isCurrentRowActive ? 'var(--color-cyan)' : 'var(--color-text-muted)' }} />
+                        TREE LEVEL {rIdx + 1} • {rIdx === 0 ? 'INITIAL COMPROMISE & VECTOR' : rIdx === 1 ? 'EXECUTION & ELEVATION' : 'OBJECTIVES & IMPACT'}
                       </span>
-                      <span style={{ padding:'1px 6px', borderRadius:'3px', fontSize:'.52rem', fontWeight:800, background:SEV_BG[sg.severity], color:SEV_COLOR[sg.severity], textTransform:'uppercase' }}>
-                        {sg.severity}
-                      </span>
+                      <div style={{ height:'1px', flex:1, background: isCurrentRowActive ? 'linear-gradient(90deg, var(--color-cyan), transparent)' : 'var(--color-border)' }} />
                     </div>
 
-                    <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
-                      <div style={{ width:'32px', height:'32px', borderRadius:'8px', background: active ? `${SEV_COLOR[sg.severity]}25` : past ? 'rgba(239,68,68,0.15)' : 'var(--color-bg-elevated)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, border:`1px solid ${active?SEV_COLOR[sg.severity]:past?'rgba(239,68,68,0.3)':'var(--color-border)'}` }}>
-                        <Icon size={16} color={active ? SEV_COLOR[sg.severity] : past ? '#ef4444' : 'var(--color-text-muted)'} />
-                      </div>
-                      <div style={{ overflow:'hidden' }}>
-                        <div style={{ fontSize:'.8rem', fontWeight:700, fontFamily:'var(--font-mono)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', color: active ? '#fff' : past ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}>
-                          {sg.node.label}
-                        </div>
-                        <div style={{ fontSize:'.62rem', color:'var(--color-text-muted)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
-                          {sg.node.type}
-                        </div>
-                      </div>
+                    {/* Nodes Row (Max 4-5 items) */}
+                    <div style={{ display:'flex', alignItems:'center', flexWrap:'wrap', gap:'12px 0' }}>
+                      {rowStages.map((sg, cIdx) => {
+                        const globalIdx = rIdx * BOXES_PER_ROW + cIdx
+                        const active = globalIdx === step
+                        const past = globalIdx < step
+                        const Icon = nodeIcon(sg.node.type)
+                        const isLastInRow = cIdx === rowStages.length - 1
+
+                        return (
+                          <div key={sg.node.uuid_id} data-active={active?'true':'false'} style={{ display:'flex', alignItems:'center', flexShrink:0 }}>
+                            {/* Node Card */}
+                            <div onClick={()=>{setStep(globalIdx);setPlaying(false)}} style={{
+                              width:'175px',
+                              background: active ? 'var(--color-bg-elevated)' : past ? 'var(--color-bg-card)' : 'rgba(15,22,41,0.6)',
+                              border: `2px solid ${active ? SEV_COLOR[sg.severity] : past ? '#ef4444' : 'var(--color-border)'}`,
+                              borderRadius: 'var(--radius-md)',
+                              padding: '14px 12px',
+                              cursor: 'pointer',
+                              position: 'relative',
+                              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                              boxShadow: active ? `0 0 24px ${SEV_COLOR[sg.severity]}40` : past ? '0 0 10px rgba(239,68,68,0.15)' : 'none',
+                              animation: active ? 'nodeGlowPulse 2s infinite ease-in-out' : 'none',
+                            }}>
+                              {/* Radar Ring when Active */}
+                              {active && playing && (
+                                <div style={{ position:'absolute', inset:'-6px', borderRadius:'var(--radius-lg)', border:`2px solid ${SEV_COLOR[sg.severity]}`, animation:'nodeRadar 1.5s infinite ease-out', pointerEvents:'none' }} />
+                              )}
+
+                              {/* Step Tag */}
+                              {active ? (
+                                <div style={{ position:'absolute', top:'-10px', right:'8px', background:SEV_COLOR[sg.severity], color:'#fff', fontSize:'.55rem', fontWeight:900, padding:'2px 8px', borderRadius:'4px', textTransform:'uppercase', letterSpacing:'.05em', boxShadow:'0 2px 6px rgba(0,0,0,0.4)' }}>
+                                  ACTIVE STEP #{globalIdx + 1}
+                                </div>
+                              ) : past ? (
+                                <div style={{ position:'absolute', top:'-10px', right:'8px', background:'#ef4444', color:'#fff', fontSize:'.5rem', fontWeight:800, padding:'1px 6px', borderRadius:'3px', textTransform:'uppercase' }}>
+                                  COMPROMISED
+                                </div>
+                              ) : null}
+
+                              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
+                                <span style={{ fontSize:'.62rem', color:'var(--color-text-muted)', fontWeight:700, textTransform:'uppercase', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:'95px' }}>
+                                  STAGE #{globalIdx + 1}
+                                </span>
+                                <span style={{ padding:'1px 6px', borderRadius:'3px', fontSize:'.52rem', fontWeight:800, background:SEV_BG[sg.severity], color:SEV_COLOR[sg.severity], textTransform:'uppercase' }}>
+                                  {sg.severity}
+                                </span>
+                              </div>
+
+                              <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
+                                <div style={{ width:'32px', height:'32px', borderRadius:'8px', background: active ? `${SEV_COLOR[sg.severity]}25` : past ? 'rgba(239,68,68,0.15)' : 'var(--color-bg-elevated)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, border:`1px solid ${active?SEV_COLOR[sg.severity]:past?'rgba(239,68,68,0.3)':'var(--color-border)'}` }}>
+                                  <Icon size={16} color={active ? SEV_COLOR[sg.severity] : past ? '#ef4444' : 'var(--color-text-muted)'} />
+                                </div>
+                                <div style={{ overflow:'hidden' }}>
+                                  <div style={{ fontSize:'.8rem', fontWeight:700, fontFamily:'var(--font-mono)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', color: active ? '#fff' : past ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}>
+                                    {sg.node.label}
+                                  </div>
+                                  <div style={{ fontSize:'.62rem', color:'var(--color-text-muted)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+                                    {sg.node.type}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* In-Row Horizontal Vector Arrow */}
+                            {!isLastInRow && (
+                              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', width:'70px', flexShrink:0, padding:'0 4px' }}>
+                                <div style={{ fontSize:'.53rem', color: (globalIdx === step && playing) ? 'var(--color-cyan)' : globalIdx < step ? '#ef4444' : 'var(--color-text-muted)', marginBottom:'4px', textTransform:'uppercase', fontWeight:700, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', maxWidth:'65px', textAlign:'center' }}>
+                                  {sg.edges[0]?.relationship || 'TREE_LINK'}
+                                </div>
+
+                                <div style={{ width:'100%', height:'3px', background: globalIdx < step ? 'linear-gradient(90deg, #ef4444, #ef4444)' : globalIdx === step ? 'linear-gradient(90deg, #ef4444, var(--color-cyan))' : 'var(--color-border)', position:'relative', borderRadius:'2px' }}>
+                                  {globalIdx === step && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      top: '-3.5px',
+                                      width: '10px',
+                                      height: '10px',
+                                      borderRadius: '50%',
+                                      background: '#06b6d4',
+                                      boxShadow: '0 0 10px #06b6d4, 0 0 20px #06b6d4',
+                                      animation: `laserPacket ${spdMs[spd]}ms infinite linear`,
+                                      zIndex: 5,
+                                    }} />
+                                  )}
+                                  <div style={{
+                                    position: 'absolute',
+                                    right: '-4px',
+                                    top: '-3.5px',
+                                    width: 0,
+                                    height: 0,
+                                    borderTop: '5px solid transparent',
+                                    borderBottom: '5px solid transparent',
+                                    borderLeft: `7px solid ${globalIdx < step ? '#ef4444' : globalIdx === step ? 'var(--color-cyan)' : 'var(--color-border)'}`
+                                  }} />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )
+                      })}
                     </div>
-                  </div>
 
-                  {/* Animated Connecting Vector Arrow */}
-                  {i < total - 1 && (
-                    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', width:'85px', flexShrink:0, padding:'0 4px' }}>
-                      <div style={{ fontSize:'.55rem', color: (i === step && playing) ? 'var(--color-cyan)' : i < step ? '#ef4444' : 'var(--color-text-muted)', marginBottom:'4px', textTransform:'uppercase', fontWeight:700, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', maxWidth:'80px', textAlign:'center' }}>
-                        {sg.edges[0]?.relationship || 'SEQUENCED_TO'}
-                      </div>
-
-                      {/* Line with moving laser pulse packet */}
-                      <div style={{ width:'100%', height:'3px', background: i < step ? 'linear-gradient(90deg, #ef4444, #ef4444)' : i === step ? 'linear-gradient(90deg, #ef4444, var(--color-cyan))' : 'var(--color-border)', position:'relative', borderRadius:'2px' }}>
-                        
-                        {/* Moving laser dot packet animation during simulation */}
-                        {i === step && (
-                          <div style={{
-                            position: 'absolute',
-                            top: '-3.5px',
-                            width: '10px',
-                            height: '10px',
-                            borderRadius: '50%',
-                            background: '#06b6d4',
-                            boxShadow: '0 0 10px #06b6d4, 0 0 20px #06b6d4',
-                            animation: `laserPacket ${spdMs[spd]}ms infinite linear`,
-                            zIndex: 5,
-                          }} />
-                        )}
-
+                    {/* Downward Tree Branch Indicator (Connecting row N to row N+1) */}
+                    {rIdx < rowCount - 1 && (
+                      <div style={{ display:'flex', alignItems:'center', justifyContent:'center', padding:'4px 0 8px', color: (step >= (rIdx + 1) * BOXES_PER_ROW) ? '#ef4444' : 'var(--color-text-muted)' }}>
+                        <div style={{ height:'1px', flex:1, background:'var(--color-border)' }} />
                         <div style={{
-                          position: 'absolute',
-                          right: '-4px',
-                          top: '-3.5px',
-                          width: 0,
-                          height: 0,
-                          borderTop: '5px solid transparent',
-                          borderBottom: '5px solid transparent',
-                          borderLeft: `7px solid ${i < step ? '#ef4444' : i === step ? 'var(--color-cyan)' : 'var(--color-border)'}`
-                        }} />
+                          display:'inline-flex', alignItems:'center', gap:'6px',
+                          padding:'4px 14px', borderRadius:'999px',
+                          background:'var(--color-bg-elevated)', border:`1px solid ${(step >= (rIdx + 1) * BOXES_PER_ROW) ? 'rgba(239,68,68,0.4)' : 'var(--color-border)'}`,
+                          fontSize:'0.66rem', fontWeight:700,
+                          color: (step >= (rIdx + 1) * BOXES_PER_ROW) ? '#ef4444' : 'var(--color-cyan)',
+                          boxShadow: (step >= (rIdx + 1) * BOXES_PER_ROW) ? '0 0 10px rgba(239,68,68,0.2)' : 'none'
+                        }}>
+                          ↓ TREE LEVEL {rIdx + 2} DOWNWARD BRANCH (ATTACK TRAVERSAL)
+                        </div>
+                        <div style={{ height:'1px', flex:1, background:'var(--color-border)' }} />
                       </div>
-                    </div>
-                  )}
-
-                </div>
-              )
-            })}
+                    )}
+                  </div>
+                )
+              })
+            })()}
           </div>
         )}
       </div>

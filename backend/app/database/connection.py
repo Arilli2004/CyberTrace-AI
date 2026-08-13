@@ -98,6 +98,57 @@ async def init_db():
                 session.add_all([case1, case2])
                 await session.commit()
                 print("[OK] Default users and sample cases seeded successfully!")
+
+            # Auto-seed sample evidence files if empty
+            from app.models import Evidence, EvidenceType
+            from app.services.storage_service import StorageService
+            import os, shutil
+
+            ev_result = await session.execute(select(Evidence))
+            ev_list = ev_result.scalars().all()
+            if not ev_list:
+                print("[SEED] Seeding sample evidence records...")
+                base_uploads = StorageService.get_upload_base_dir()
+                sample_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "sample_evidence"))
+                if not os.path.exists(sample_dir):
+                    sample_dir = os.path.abspath(os.path.join(os.getcwd(), "sample_evidence"))
+
+                csv_source = os.path.join(sample_dir, "auth_audit.csv")
+
+                c1_upload_dir = os.path.join(base_uploads, "1")
+                os.makedirs(c1_upload_dir, exist_ok=True)
+                
+                c1_uuid = "22285a1f-edec-4b90-8dca-f4e3350ce653"
+                c1_dest = os.path.join(c1_upload_dir, f"{c1_uuid}.csv")
+                if os.path.exists(csv_source):
+                    shutil.copy(csv_source, c1_dest)
+
+                ev1 = Evidence(
+                    uuid_id=c1_uuid,
+                    case_id=1,
+                    filename=f"{c1_uuid}.csv",
+                    original_filename="auth_audit.csv",
+                    storage_path=c1_dest,
+                    file_path=c1_dest,
+                    extension="csv",
+                    mime_type="text/csv",
+                    size=os.path.getsize(c1_dest) if os.path.exists(c1_dest) else 686,
+                    sha256="d7a18bfa98e1f0e21a2c3b4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f",
+                    file_type=EvidenceType.csv,
+                    uploaded_by=1,
+                    verification_status="verified",
+                    normalization_status="pending",
+                    graph_status="pending",
+                    csp_status="pending",
+                    correlation_status="pending",
+                    timeline_status="pending",
+                    processing_stage="VERIFIED",
+                    parser_status="pending",
+                    is_parsed=False,
+                )
+                session.add(ev1)
+                await session.commit()
+                print("[OK] Sample evidence records seeded successfully!")
         except Exception as seed_err:
             print(f"[NOTICE] Seeding info: {seed_err}")
 

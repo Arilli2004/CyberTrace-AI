@@ -5,10 +5,12 @@ from typing import Optional, List, Dict, Any
 from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 import uuid
+import os
 
 from app.repositories.evidence_repository import EvidenceRepository
 from app.repositories.event_repository import EventRepository
 from app.parsers.parser_manager import ParserManager
+from app.services.storage_service import StorageService
 from app.models import Evidence, Event, SeverityLevel, ProcessingStage
 
 
@@ -24,14 +26,19 @@ class ParserService:
         if not evidence:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Evidence #{evidence_id} not found.")
 
-        # Update evidence status to parsing
+        # Update evidence status to parsing & resolve path dynamically
+        resolved_path = StorageService.resolve_file_path(evidence.storage_path)
+        if resolved_path != evidence.storage_path and os.path.exists(resolved_path):
+            evidence.storage_path = resolved_path
+            evidence.file_path = resolved_path
+
         evidence.parser_status = "parsing"
         await self.db.flush()
 
         try:
             # Execute async parsing
             parsed_dicts = await ParserManager.parse_file_async(
-                file_path=evidence.storage_path,
+                file_path=resolved_path,
                 extension=evidence.extension,
             )
 

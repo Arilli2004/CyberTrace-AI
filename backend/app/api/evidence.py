@@ -9,6 +9,7 @@ import os
 
 from app.database.connection import get_db
 from app.services.evidence_service import EvidenceService
+from app.services.storage_service import StorageService
 from app.schemas.evidence import (
     EvidenceResponseSchema,
     EvidenceListResponseSchema,
@@ -134,7 +135,8 @@ async def download_evidence(
     user_id: int = Depends(get_current_user_id),
 ):
     record = await service.get_evidence_by_id(evidence_id=id)
-    if not os.path.exists(record.storage_path):
+    storage_path = StorageService.resolve_file_path(record.storage_path)
+    if not os.path.exists(storage_path):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="File content not found on storage disk.",
@@ -149,7 +151,7 @@ async def download_evidence(
     )
 
     return FileResponse(
-        path=record.storage_path,
+        path=storage_path,
         filename=record.original_filename,
         media_type=record.mime_type,
     )
