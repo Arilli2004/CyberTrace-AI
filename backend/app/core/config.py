@@ -26,9 +26,10 @@ class Settings(BaseSettings):
     # ─── Redis ────────────────────────────────────────────────────────────────
     REDIS_URL: str = "redis://localhost:6379/0"
 
-    # ─── OpenAI ───────────────────────────────────────────────────────────────
-    OPENAI_API_KEY: str = ""
-    OPENAI_MODEL: str = "gpt-4o"
+    # ─── OpenAI / Local Gemma AI (LM Studio) ──────────────────────────────────
+    OPENAI_API_KEY: str = "lm-studio"
+    OPENAI_BASE_URL: str = "http://127.0.0.1:1234/v1"
+    OPENAI_MODEL: str = "google/gemma-4-e4b"
     OPENAI_MAX_TOKENS: int = 4096
 
     # ─── File Storage ─────────────────────────────────────────────────────────
