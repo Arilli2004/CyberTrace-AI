@@ -1,8 +1,9 @@
 """
-Cases API Router — Controller Layer for Investigation Cases
+Cases API Router — Controller Layer for Investigation Cases & Live Dashboard Stats
 """
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, func
 from typing import Optional
 
 from app.database.connection import get_db
@@ -13,7 +14,7 @@ from app.schemas.cases import (
     CaseResponseSchema,
     CaseListResponseSchema,
 )
-from app.models import CaseStatus
+from app.models import Case, CaseStatus, Evidence, Event, SeverityLevel, ChainOfCustodyLog
 from app.core.security import get_current_user_id
 
 router = APIRouter()
@@ -25,6 +26,68 @@ def get_case_service(db: AsyncSession = Depends(get_db)) -> CaseService:
 
 
 # ─── Endpoints ───────────────────────────────────────────────────────────────
+@router.get(
+    "/stats/dashboard",
+    summary="Get Live Dashboard Statistics",
+    description="Retrieve live database metrics for total cases, evidence files, active alerts, built timelines, and recent activities.",
+)
+async def get_dashboard_stats(
+    db: AsyncSession = Depends(get_db),
+    user_id: int = Depends(get_current_user_id),
+):
+    # 1. Total Cases
+    cases_stmt = select(func.count(Case.id)).where(Case.is_deleted == False)
+    cases_res = await db.execute(cases_stmt)
+    total_cases = cases_res.scalar() or 0
+
+    # 2. Total Evidence Files
+    ev_stmt = select(func.count(Evidence.id)).where(Evidence.is_deleted == False)
+    ev_res = await db.execute(ev_stmt)
+    total_evidence = ev_res.scalar() or 0
+
+    # 3. Active Threat Alerts (High / Critical events)
+    alert_stmt = select(func.count(Event.id)).where(
+        Event.severity.in_([SeverityLevel.high, SeverityLevel.critical])
+    )
+    alert_res = await db.execute(alert_stmt)
+    active_alerts = alert_res.scalar() or 0
+
+    # 4. Timelines Built (Parsed Evidence count)
+    parsed_stmt = select(func.count(Evidence.id)).where(
+        Evidence.is_deleted == False, Evidence.is_parsed == True
+    )
+    parsed_res = await db.execute(parsed_stmt)
+    timelines_built = parsed_res.scalar() or 0
+
+    # 5. Recent Custody Logs / Activity Feed from DB
+    logs_stmt = (
+        select(ChainOfCustodyLog)
+        .order_by(ChainOfCustodyLog.timestamp.desc())
+        .limit(6)
+    )
+    logs_res = await db.execute(logs_stmt)
+    recent_logs = logs_res.scalars().all()
+
+    activity_feed = [
+        {
+            "id": log.id,
+            "action": f"Action '{log.action}' performed on Evidence #{log.evidence_id}",
+            "time": log.timestamp.strftime("%Y-%m-%d %H:%M UTC") if log.timestamp else "Recently",
+            "details": log.details or {},
+            "severity": "critical" if log.action in ["DELETE", "PARSE_FAIL"] else "high" if log.action == "PARSE" else "info",
+        }
+        for log in recent_logs
+    ]
+
+    return {
+        "total_cases": total_cases,
+        "total_evidence": total_evidence,
+        "active_alerts": active_alerts,
+        "timelines_built": timelines_built,
+        "activity_feed": activity_feed,
+    }
+
+
 @router.get(
     "/",
     response_model=CaseListResponseSchema,

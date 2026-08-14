@@ -1,0 +1,48 @@
+[
+  {
+    "timestamp": "2026-08-14T11:00:00Z",
+    "event_id": "LOG_001",
+    "event_type": "AUTHENTICATION",
+    "user": "r.miller",
+    "host": "FINANCE-PC-09",
+    "ip_address": "10.0.4.15",
+    "process": "winlogon.exe",
+    "severity": "low",
+    "description": "Standard user r.miller authenticated to workstation FINANCE-PC-09"
+  },
+  {
+    "timestamp": "2026-08-14T11:15:30Z",
+    "event_id": "FILE_ACCESS",
+    "event_type": "UNAUTHORIZED_READ",
+    "user": "r.miller",
+    "host": "FINANCE-PC-09",
+    "ip_address": "10.0.4.15",
+    "process": "excel.exe",
+    "severity": "medium",
+    "file_path": "\\\\FIN-SHARE\\Confidential\\Q3_Financial_Payroll_2026.xlsx",
+    "description": "User accessed high-confidential payroll file without authorization ticket"
+  },
+  {
+    "timestamp": "2026-08-14T11:30:00Z",
+    "event_id": "USB_MOUNT",
+    "event_type": "REMOVABLE_MEDIA",
+    "user": "r.miller",
+    "host": "FINANCE-PC-09",
+    "ip_address": "10.0.4.15",
+    "process": "explorer.exe",
+    "severity": "high",
+    "description": "Unencrypted USB Mass Storage Device (SanDisk Ultra 128GB) attached to USB port 3"
+  },
+  {
+    "timestamp": "2026-08-14T11:45:12Z",
+    "event_id": "FILE_COPY",
+    "event_type": "DATA_EXFILTRATION",
+    "user": "r.miller",
+    "host": "FINANCE-PC-09",
+    "ip_address": "10.0.4.15",
+    "process": "cmd.exe",
+    "severity": "critical",
+    "file_path": "E:\\Stolen_Data\\Q3_Financial_Payroll_2026.zip",
+    "description": "Mass transfer of 2.4 GB confidential files to USB drive E:\\"
+  }
+]

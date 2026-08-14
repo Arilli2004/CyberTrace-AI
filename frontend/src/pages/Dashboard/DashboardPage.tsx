@@ -1,55 +1,91 @@
-import { FolderSearch, Upload, Clock, AlertTriangle, Shield, Activity, Bot } from 'lucide-react'
+import { FolderSearch, Upload, Clock, AlertTriangle, Shield, Activity, Bot, RefreshCw } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { casesApi } from '@/api/client'
 import { useAuthStore } from '@/store/authStore'
-
-const STAT_CARDS = [
-  { icon: FolderSearch, label: 'Total Cases', value: '12', color: '#3b82f6', bg: 'rgba(59,130,246,0.1)', trend: '+3 this week' },
-  { icon: Upload, label: 'Evidence Files', value: '47', color: '#06b6d4', bg: 'rgba(6,182,212,0.1)', trend: '+8 today' },
-  { icon: AlertTriangle, label: 'Active Alerts', value: '23', color: '#f43f5e', bg: 'rgba(244,63,94,0.1)', trend: '5 critical' },
-  { icon: Clock, label: 'Timelines Built', value: '9', color: '#10b981', bg: 'rgba(16,185,129,0.1)', trend: '100% accuracy' },
-]
-
-const RECENT_ACTIVITY = [
-  { time: '2 min ago', action: 'Evidence uploaded to Case #1042', type: 'upload', severity: 'info' },
-  { time: '15 min ago', action: 'Critical alert: Log clearing detected', type: 'alert', severity: 'critical' },
-  { time: '1 hr ago', action: 'AI report generated for Ransomware Case', type: 'report', severity: 'info' },
-  { time: '2 hr ago', action: 'New case created: Data Exfiltration - Finance', type: 'case', severity: 'medium' },
-  { time: '3 hr ago', action: 'Failed login brute force detected (5 attempts)', type: 'alert', severity: 'high' },
-]
+import { useNavigate } from 'react-router-dom'
 
 export default function DashboardPage() {
   const { user } = useAuthStore()
+  const navigate = useNavigate()
 
-  const { data: casesData } = useQuery({
-    queryKey: ['cases'],
+  // Fetch Live Dashboard Database Statistics
+  const { data: statsData, isLoading: isStatsLoading, refetch: refetchStats } = useQuery({
+    queryKey: ['dashboard-stats'],
+    queryFn: () => casesApi.getDashboardStats(),
+    select: (res) => res.data,
+  })
+
+  // Fetch Live Recent Cases from DB
+  const { data: casesData, isLoading: isCasesLoading } = useQuery({
+    queryKey: ['cases-dashboard'],
     queryFn: () => casesApi.list({ limit: 5 }),
     select: (res) => res.data,
   })
 
+  const statCards = [
+    {
+      icon: FolderSearch,
+      label: 'Total Cases',
+      value: isStatsLoading ? '...' : String(statsData?.total_cases ?? 0),
+      color: '#3b82f6',
+      bg: 'rgba(59,130,246,0.1)',
+      trend: 'Live in Database',
+    },
+    {
+      icon: Upload,
+      label: 'Evidence Files',
+      value: isStatsLoading ? '...' : String(statsData?.total_evidence ?? 0),
+      color: '#06b6d4',
+      bg: 'rgba(6,182,212,0.1)',
+      trend: 'Uploaded Artifacts',
+    },
+    {
+      icon: AlertTriangle,
+      label: 'Active Threat Alerts',
+      value: isStatsLoading ? '...' : String(statsData?.active_alerts ?? 0),
+      color: '#f43f5e',
+      bg: 'rgba(244,63,94,0.1)',
+      trend: 'High / Critical Severity',
+    },
+    {
+      icon: Clock,
+      label: 'Timelines Built',
+      value: isStatsLoading ? '...' : String(statsData?.timelines_built ?? 0),
+      color: '#10b981',
+      bg: 'rgba(16,185,129,0.1)',
+      trend: 'Parsed Evidence Logs',
+    },
+  ]
+
+  const recentCases = casesData?.cases || []
+  const activityFeed = statsData?.activity_feed || []
+
   return (
     <div className="animate-slide-in">
       {/* Header */}
-      <div className="page-header">
+      <div className="page-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <h1 className="page-title">
             Welcome back, {user?.name?.split(' ')[0] || 'Investigator'} 👋
           </h1>
-          <p className="page-subtitle">CyberTrace AI — Digital Forensics Dashboard</p>
+          <p className="page-subtitle">CyberTrace AI — Live Digital Forensics & Database Overview</p>
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button className="btn btn-secondary btn-sm">
-            <Activity size={16} /> View Alerts
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <button className="btn btn-secondary btn-sm" onClick={() => refetchStats()}>
+            <RefreshCw size={14} /> Refresh DB Metrics
           </button>
-          <button className="btn btn-primary btn-sm">
-            <FolderSearch size={16} /> New Case
+          <button className="btn btn-secondary btn-sm" onClick={() => navigate('/investigation')}>
+            <Activity size={16} /> Investigation Workbench
+          </button>
+          <button className="btn btn-primary btn-sm" onClick={() => navigate('/cases')}>
+            <FolderSearch size={16} /> Manage Cases
           </button>
         </div>
       </div>
 
       {/* Stat Cards */}
       <div className="grid-4" style={{ marginBottom: '24px' }}>
-        {STAT_CARDS.map(({ icon: Icon, label, value, color, bg, trend }) => (
+        {statCards.map(({ icon: Icon, label, value, color, bg, trend }) => (
           <div key={label} className="stat-card">
             <div className="stat-icon" style={{ background: bg }}>
               <Icon size={22} color={color} />
@@ -68,79 +104,98 @@ export default function DashboardPage() {
         {/* Recent Cases */}
         <div className="card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h3 style={{ margin: 0 }}>Recent Cases</h3>
-            <a href="/cases" className="btn btn-ghost btn-sm">View All →</a>
+            <h3 style={{ margin: 0 }}>Active Database Cases ({recentCases.length})</h3>
+            <button onClick={() => navigate('/cases')} className="btn btn-ghost btn-sm">View All →</button>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {(casesData?.cases || MOCK_CASES).map((c: any, i: number) => (
-              <div key={i} style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '12px',
-                background: 'var(--color-bg-elevated)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--color-border)',
-                transition: 'border-color 0.2s',
-                cursor: 'pointer',
-              }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--color-accent)')}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--color-border)')}
-              >
-                <div style={{
-                  width: '40px', height: '40px',
-                  background: 'rgba(59,130,246,0.1)',
-                  borderRadius: 'var(--radius-sm)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0,
-                }}>
-                  <FolderSearch size={18} color="var(--color-accent)" />
-                </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                  <div style={{ fontWeight: 600, fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {c.title || `Case #${1040 + i}`}
+
+          {isCasesLoading ? (
+            <div style={{ padding: '20px', textAlign: 'center', color: 'var(--color-text-muted)' }}>Loading cases...</div>
+          ) : recentCases.length === 0 ? (
+            <div style={{ padding: '30px', textAlign: 'center', color: 'var(--color-text-muted)', border: '1px dashed var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+              No active cases found in database. Click "Manage Cases" to create one.
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {recentCases.map((c: any) => (
+                <div
+                  key={c.id}
+                  onClick={() => navigate('/cases')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '12px 16px',
+                    background: 'var(--color-bg-elevated)',
+                    borderRadius: 'var(--radius-md)',
+                    border: '1px solid var(--color-border)',
+                    transition: 'all 0.2s ease',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--color-accent)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--color-border)')}
+                >
+                  <div style={{
+                    width: '40px', height: '40px',
+                    background: 'rgba(59,130,246,0.1)',
+                    borderRadius: 'var(--radius-sm)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <FolderSearch size={18} color="var(--color-accent)" />
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>
-                    {c.status || 'analysis'} • {c.priority || 'high'} priority
+                  <div style={{ flex: 1, overflow: 'hidden' }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      Case #{c.id}: {c.title}
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>
+                      Status: {c.status || 'analysis'} • Priority: {c.priority || 'high'}
+                    </div>
                   </div>
+                  <span className={`badge badge-${c.priority === 'critical' ? 'critical' : c.priority === 'high' ? 'high' : 'medium'}`}>
+                    {c.priority ? c.priority.toUpperCase() : 'HIGH'}
+                  </span>
                 </div>
-                <span className={`badge badge-${c.priority === 'critical' ? 'critical' : c.priority === 'high' ? 'high' : 'medium'}`}>
-                  {c.priority || 'high'}
-                </span>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* Activity Feed */}
+        {/* Audit Log & Activity Feed from DB */}
         <div className="card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h3 style={{ margin: 0 }}>Recent Activity</h3>
-            <Shield size={18} color="var(--color-text-muted)" />
+            <h3 style={{ margin: 0 }}>Live Chain of Custody Audit Log</h3>
+            <Shield size={18} color="var(--color-cyan)" />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {RECENT_ACTIVITY.map((item, i) => (
-              <div key={i} className="timeline-item">
-                <div className="timeline-dot" style={{
-                  background: item.severity === 'critical' ? 'rgba(239,68,68,0.15)' :
-                    item.severity === 'high' ? 'rgba(249,115,22,0.15)' :
-                      'rgba(59,130,246,0.15)',
-                }}>
-                  <div style={{
-                    width: '8px', height: '8px', borderRadius: '50%',
-                    background: item.severity === 'critical' ? 'var(--color-critical)' :
-                      item.severity === 'high' ? '#f97316' : 'var(--color-accent)',
-                  }} />
-                </div>
-                <div style={{ flex: 1, paddingTop: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: 'var(--color-text-primary)', marginBottom: '2px' }}>
-                    {item.action}
+
+          {activityFeed.length === 0 ? (
+            <div style={{ padding: '30px', textAlign: 'center', color: 'var(--color-text-muted)', border: '1px dashed var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+              No audit activities logged yet in database. Upload or parse evidence files to generate custody logs.
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {activityFeed.map((item: any) => (
+                <div key={item.id} className="timeline-item">
+                  <div className="timeline-dot" style={{
+                    background: item.severity === 'critical' ? 'rgba(239,68,68,0.15)' :
+                      item.severity === 'high' ? 'rgba(249,115,22,0.15)' :
+                        'rgba(59,130,246,0.15)',
+                  }}>
+                    <div style={{
+                      width: '8px', height: '8px', borderRadius: '50%',
+                      background: item.severity === 'critical' ? 'var(--color-critical)' :
+                        item.severity === 'high' ? '#f97316' : 'var(--color-accent)',
+                    }} />
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{item.time}</div>
+                  <div style={{ flex: 1, paddingTop: '4px' }}>
+                    <div style={{ fontSize: '0.84rem', color: 'var(--color-text-primary)', fontWeight: 600 }}>
+                      {item.action}
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{item.time}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -154,6 +209,7 @@ export default function DashboardPage() {
         display: 'flex',
         alignItems: 'center',
         gap: '16px',
+        flexWrap: 'wrap',
       }}>
         <div style={{
           width: '44px', height: '44px',
@@ -164,20 +220,16 @@ export default function DashboardPage() {
         }}>
           <Bot size={22} color="white" />
         </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontWeight: 600, marginBottom: '4px' }}>AI Investigation Assistant Ready</div>
-          <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
-            3 active cases have new evidence. Click to start AI-assisted investigation and generate reports.
+        <div style={{ flex: 1, minWidth: '240px' }}>
+          <div style={{ fontWeight: 700, marginBottom: '4px' }}>Gemma AI Investigation Assistant Active</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+            Ask Gemma AI about active cases, evidence logs, threat severity, or generate formal investigation reports.
           </div>
         </div>
-        <button className="btn btn-primary btn-sm">Start Analysis →</button>
+        <button className="btn btn-primary btn-sm" onClick={() => navigate('/ai-assistant')}>
+          Launch AI Assistant →
+        </button>
       </div>
     </div>
   )
 }
-
-const MOCK_CASES = [
-  { title: 'Ransomware Investigation - ACME Corp', status: 'analysis', priority: 'critical' },
-  { title: 'Data Exfiltration - Finance Dept', status: 'evidence_uploaded', priority: 'high' },
-  { title: 'Unauthorized Access - HR Systems', status: 'new', priority: 'medium' },
-]

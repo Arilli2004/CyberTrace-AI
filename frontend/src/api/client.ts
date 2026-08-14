@@ -40,6 +40,7 @@ export const authApi = {
 
 // ─── Cases ────────────────────────────────────────────────────────────────────
 export const casesApi = {
+  getDashboardStats: () => api.get('/cases/stats/dashboard'),
   list: (params?: { skip?: number; limit?: number; status?: string }) =>
     api.get('/cases/', { params }),
   create: (data: { title: string; description?: string; priority?: string }) =>

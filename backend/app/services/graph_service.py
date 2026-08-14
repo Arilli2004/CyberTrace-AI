@@ -26,10 +26,33 @@ class GraphService:
             case_id=case_id, limit=10000
         )
 
+        # Auto-heal: If 0 normalized events, auto-parse and auto-normalize on-the-fly
+        if not norm_events:
+            from app.services.normalization_service import NormalizationService
+            from app.services.parser_service import ParserService
+            from app.repositories.event_repository import EventRepository
+
+            event_repo = EventRepository(self.db)
+            raw_events, _ = await event_repo.list_events_by_case(case_id=case_id, limit=100)
+
+            if not raw_events:
+                # Auto-parse uploaded evidence files first
+                parser_svc = ParserService(self.db)
+                await parser_svc.parse_all_evidence_in_case(case_id=case_id, user_id=user_id)
+
+            # Auto-normalize evidence
+            norm_svc = NormalizationService(self.db)
+            await norm_svc.normalize_case(case_id=case_id, user_id=user_id)
+
+            # Re-fetch normalized events
+            norm_events, total_events = await self.norm_event_repo.list_normalized_events_by_case(
+                case_id=case_id, limit=10000
+            )
+
         if not norm_events:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Case #{case_id} has 0 normalized events. Please normalize evidence first.",
+                detail=f"Case #{case_id} has no uploaded evidence logs yet. Please upload evidence files to Case #{case_id} on the Evidence page first.",
             )
 
         # Clear existing graph
