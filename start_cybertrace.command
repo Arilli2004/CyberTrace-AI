@@ -13,15 +13,18 @@ echo "Project Directory: $PROJECT_DIR"
 echo ""
 
 # 1. Check Python installation
-if ! command -v python3 &> /dev/null; then
+PYTHON_EXECUTABLE="python3"
+if command -v python3.12 &> /dev/null; then
+    PYTHON_EXECUTABLE="python3.12"
+elif ! command -v python3 &> /dev/null; then
     echo "[ERROR] python3 could not be found. Please install Python 3.12+."
     exit 1
 fi
 
 # 2. Check & Create Virtual Environment
 if [ ! -d "backend/venv" ]; then
-    echo "[SETUP] Creating Python virtual environment in backend/venv..."
-    python3 -m venv backend/venv
+    echo "[SETUP] Creating Python virtual environment in backend/venv using $PYTHON_EXECUTABLE..."
+    "$PYTHON_EXECUTABLE" -m venv backend/venv
 fi
 
 PYTHON_BIN="$PROJECT_DIR/backend/venv/bin/python"

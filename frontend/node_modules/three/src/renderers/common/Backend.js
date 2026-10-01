@@ -202,10 +202,10 @@ class Backend {
 	 * @abstract
 	 * @param {BindGroup} bindGroup - The bind group.
 	 * @param {Array<BindGroup>} bindings - Array of bind groups.
-	 * @param {number} cacheIndex - The cache index.
+	 * @param {string} cacheKey - The cache key.
 	 * @param {number} version - The version.
 	 */
-	createBindings( /*bindGroup, bindings, cacheIndex, version*/ ) { }
+	createBindings( /*bindGroup, bindings, cacheKey, version*/ ) { }
 
 	/**
 	 * Updates the given bind group definition.
@@ -213,10 +213,10 @@ class Backend {
 	 * @abstract
 	 * @param {BindGroup} bindGroup - The bind group.
 	 * @param {Array<BindGroup>} bindings - Array of bind groups.
-	 * @param {number} cacheIndex - The cache index.
+	 * @param {string} cacheKey - The cache key.
 	 * @param {number} version - The version.
 	 */
-	updateBindings( /*bindGroup, bindings, cacheIndex, version*/ ) { }
+	updateBindings( /*bindGroup, bindings, cacheKey, version*/ ) { }
 
 	/**
 	 * Updates a buffer binding.
@@ -243,8 +243,9 @@ class Backend {
 	 * @abstract
 	 * @param {ComputePipeline} computePipeline - The compute pipeline.
 	 * @param {Array<BindGroup>} bindings - The bindings.
+	 * @param {?Array<Promise>} [promises=null] - Optional compilation promises.
 	 */
-	createComputePipeline( /*computePipeline, bindings*/ ) { }
+	createComputePipeline( /*computePipeline, bindings, promises*/ ) { }
 
 	// cache key
 
@@ -351,7 +352,7 @@ class Backend {
 	 * @param {number} y - The y coordinate of the copy origin.
 	 * @param {number} width - The width of the copy.
 	 * @param {number} height - The height of the copy.
-	 * @param {number} faceIndex - The face index.
+	 * @param {number} faceIndex - The cube face, depth slice or array layer index.
 	 * @return {Promise<TypedArray>} A Promise that resolves with a typed array when the copy operation has finished.
 	 */
 	async copyTextureToBuffer( /*texture, x, y, width, height, faceIndex*/ ) {}
@@ -469,7 +470,7 @@ class Backend {
 	 * Updates a unique identifier for the given render context that can be used
 	 * to allocate resources like occlusion queries or timestamp queries.
 	 *
-	 * @param {RenderContext|ComputeNode} abstractRenderContext - The render context.
+	 * @param {RenderContext|ComputeNode|Array<ComputeNode>} abstractRenderContext - The render context.
 	 */
 	updateTimeStampUID( abstractRenderContext ) {
 
@@ -478,7 +479,15 @@ class Backend {
 
 		let prefix;
 
-		if ( abstractRenderContext.isComputeNode === true ) {
+		let id = abstractRenderContext.id;
+
+		if ( Array.isArray( abstractRenderContext ) ) {
+
+			id = abstractRenderContext.map( c => c.id ).join( ',' );
+
+			prefix = 'c:' + this.renderer.info.compute.frameCalls;
+
+		} else if ( abstractRenderContext.isComputeNode === true ) {
 
 			prefix = 'c:' + this.renderer.info.compute.frameCalls;
 
@@ -488,7 +497,7 @@ class Backend {
 
 		}
 
-		contextData.timestampUID = prefix + ':' + abstractRenderContext.id + ':f' + frame;
+		contextData.timestampUID = prefix + ':' + id + ':f' + frame;
 
 	}
 
@@ -670,6 +679,13 @@ class Backend {
 	setScissorTest( /*boolean*/ ) { }
 
 	/**
+	 * Resets the backend's internal state. A no-op for backends without a state cache (e.g. WebGPU).
+	 *
+	 * @abstract
+	 */
+	resetState() { }
+
+	/**
 	 * Returns the clear color and alpha into a single
 	 * color object.
 	 *
@@ -806,7 +822,19 @@ class Backend {
 	 *
 	 * @abstract
 	 */
-	dispose() { }
+	async dispose() {
+
+		for ( const queryPool of Object.values( this.timestampQueryPool ) ) {
+
+			if ( queryPool !== null ) {
+
+				await queryPool.dispose();
+
+			}
+
+		}
+
+	}
 
 }
 
