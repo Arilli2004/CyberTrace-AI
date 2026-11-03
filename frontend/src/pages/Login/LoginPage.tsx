@@ -166,6 +166,38 @@ export default function LoginPage() {
             <UserCheck size={14} color="var(--color-cyan)" />
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => {
+            setAuth('demo-access-token', {
+              id: 1,
+              name: 'Lead Forensics Investigator',
+              email: 'investigator@cybertrace.ai',
+              role: 'investigator',
+            })
+            toast.success('Logged in via Frontend Demo Mode!')
+            navigate('/dashboard')
+          }}
+          style={{
+            marginTop: '12px',
+            width: '100%',
+            padding: '10px 14px',
+            background: 'rgba(59, 130, 246, 0.1)',
+            border: '1px dashed var(--color-accent)',
+            borderRadius: 'var(--radius-sm)',
+            cursor: 'pointer',
+            color: 'var(--color-accent)',
+            fontSize: '0.85rem',
+            fontWeight: 600,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+          }}
+        >
+          🚀 Explore in Demo Mode (Frontend-Only Preview)
+        </button>
       </div>
     </div>
   )
