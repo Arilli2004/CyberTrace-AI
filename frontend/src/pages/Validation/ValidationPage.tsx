@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { ShieldCheck, AlertTriangle, CheckCircle, RefreshCw, Cpu, Award } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { cspApi, casesApi } from '@/api/client'
+import type { CaseListResponse, CSPResultsResponse, CSPValidateResponse } from '@/types/api'
 import toast from 'react-hot-toast'
 
 export default function ValidationPage() {
@@ -11,7 +13,7 @@ export default function ValidationPage() {
   const { data: casesData } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 100 }),
-    select: (res) => res.data?.cases || [],
+    select: (res: AxiosResponse<CaseListResponse>) => res.data?.cases || [],
   })
 
   const activeCaseId = selectedCase || (casesData && casesData.length > 0 ? casesData[0].id : null)
@@ -20,12 +22,12 @@ export default function ValidationPage() {
     queryKey: ['csp-results', activeCaseId],
     queryFn: () => cspApi.getResults(activeCaseId!),
     enabled: !!activeCaseId,
-    select: (res) => res.data,
+    select: (res: AxiosResponse<CSPResultsResponse>) => res.data,
   })
 
   const validateMutation = useMutation({
     mutationFn: (caseId: number) => cspApi.validate(caseId),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<CSPValidateResponse>) => {
       queryClient.invalidateQueries({ queryKey: ['csp-results', activeCaseId] })
       toast.success(`CSP Backtracking completed! Validation Score: ${res.data.validation_score}%`)
     },

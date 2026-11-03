@@ -1,7 +1,16 @@
 import { useState, useCallback } from 'react'
 import { Upload, File, Trash2, X, Download, Search, Clock, Play, Cpu, Layers } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { evidenceApi, casesApi, parserApi, normalizationApi } from '@/api/client'
+import type {
+  CaseListResponse,
+  EvidenceListResponse,
+  EvidenceItem,
+  ChainOfCustodyLog,
+  ParserStatusResponse,
+  NormalizationStatusResponse,
+} from '@/types/api'
 import toast from 'react-hot-toast'
 
 const ALLOWED_TYPES = ['evtx', 'log', 'csv', 'json', 'xml', 'txt', 'zip']
@@ -11,15 +20,15 @@ export default function EvidencePage() {
   const [dragOver, setDragOver] = useState(false)
   const [files, setFiles] = useState<File[]>([])
   const [search, setSearch] = useState('')
-  const [selectedEvidence, setSelectedEvidence] = useState<any | null>(null)
-  const [custodyLogs, setCustodyLogs] = useState<any[]>([])
+  const [selectedEvidence, setSelectedEvidence] = useState<EvidenceItem | null>(null)
+  const [custodyLogs, setCustodyLogs] = useState<ChainOfCustodyLog[]>([])
   const [showCustodyModal, setShowCustodyModal] = useState(false)
 
   const queryClient = useQueryClient()
 
   const parseMutation = useMutation({
     mutationFn: (eId: number) => parserApi.parse(eId),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<ParserStatusResponse>) => {
       queryClient.invalidateQueries({ queryKey: ['evidence'] })
       toast.success(`Parsing complete! Extracted ${res.data.event_count} structured events.`)
     },
@@ -28,7 +37,7 @@ export default function EvidencePage() {
 
   const normalizeMutation = useMutation({
     mutationFn: (eId: number) => normalizationApi.normalize(eId),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<NormalizationStatusResponse>) => {
       queryClient.invalidateQueries({ queryKey: ['evidence'] })
       toast.success(`Normalization complete! ${res.data.event_count} events standardized.`)
     },
@@ -38,7 +47,7 @@ export default function EvidencePage() {
   const { data: casesData } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 100 }),
-    select: (res) => res.data?.cases || [],
+    select: (res: AxiosResponse<CaseListResponse>) => res.data?.cases || [],
   })
 
   const { data: evidenceData, isLoading } = useQuery({
@@ -47,12 +56,15 @@ export default function EvidencePage() {
       selectedCase
         ? evidenceApi.getCaseEvidence(selectedCase)
         : evidenceApi.list({ limit: 100, search: search || undefined }),
-    select: (res) => res.data?.evidence || res.data || [],
+    select: (res: AxiosResponse<EvidenceListResponse | EvidenceItem[]>) => {
+      const data = res.data as any
+      return (data?.evidence || (Array.isArray(data) ? data : [])) as EvidenceItem[]
+    },
   })
 
   const uploadMutation = useMutation({
     mutationFn: () => evidenceApi.upload(selectedCase!, files),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<EvidenceItem[]>) => {
       queryClient.invalidateQueries({ queryKey: ['evidence'] })
       toast.success(`Uploaded ${res.data.length} evidence file(s) successfully!`)
       setFiles([])
@@ -86,7 +98,7 @@ export default function EvidencePage() {
     }
   }
 
-  const handleViewCustody = async (evidence: any) => {
+  const handleViewCustody = async (evidence: EvidenceItem) => {
     setSelectedEvidence(evidence)
     try {
       const res = await evidenceApi.getCustody(evidence.id)

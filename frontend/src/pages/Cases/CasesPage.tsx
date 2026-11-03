@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { FolderSearch, Plus, Search, Trash2, ChevronRight } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { casesApi } from '@/api/client'
+import type { CaseListResponse } from '@/types/api'
 import toast from 'react-hot-toast'
 
 const STATUS_COLORS: Record<string, string> = {
@@ -24,7 +26,7 @@ export default function CasesPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 50 }),
-    select: (res) => res.data,
+    select: (res: AxiosResponse<CaseListResponse>) => res.data,
   })
 
   const createMutation = useMutation({

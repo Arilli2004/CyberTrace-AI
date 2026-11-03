@@ -1,6 +1,8 @@
 import { FolderSearch, Upload, Clock, AlertTriangle, Shield, Activity, Bot, RefreshCw } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { casesApi } from '@/api/client'
+import type { DashboardStatsResponse, CaseListResponse } from '@/types/api'
 import { useAuthStore } from '@/store/authStore'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,14 +14,14 @@ export default function DashboardPage() {
   const { data: statsData, isLoading: isStatsLoading, refetch: refetchStats } = useQuery({
     queryKey: ['dashboard-stats'],
     queryFn: () => casesApi.getDashboardStats(),
-    select: (res) => res.data,
+    select: (res: AxiosResponse<DashboardStatsResponse>) => res.data,
   })
 
   // Fetch Live Recent Cases from DB
   const { data: casesData, isLoading: isCasesLoading } = useQuery({
     queryKey: ['cases-dashboard'],
     queryFn: () => casesApi.list({ limit: 5 }),
-    select: (res) => res.data,
+    select: (res: AxiosResponse<CaseListResponse>) => res.data,
   })
 
   const statCards = [

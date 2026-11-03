@@ -1,5 +1,29 @@
 import axios from 'axios'
 import { useAuthStore } from '@/store/authStore'
+import type {
+  CaseItem,
+  CaseListResponse,
+  DashboardStatsResponse,
+  EvidenceItem,
+  EvidenceListResponse,
+  ChainOfCustodyLog,
+  ParserStatusResponse,
+  EventListResponse,
+  EventItem,
+  NormalizationStatusResponse,
+  NormalizedEventListResponse,
+  NormalizedEventItem,
+  GraphPayloadResponse,
+  GraphStatisticsResponse,
+  GraphBuildResponse,
+  CSPValidateResponse,
+  CSPResultsResponse,
+  TimelineResponse,
+  AIAnalyzeResponse,
+  AIReportResponse,
+  AIChatHistoryResponse,
+  ReportItem,
+} from '@/types/api'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
@@ -40,15 +64,15 @@ export const authApi = {
 
 // ─── Cases ────────────────────────────────────────────────────────────────────
 export const casesApi = {
-  getDashboardStats: () => api.get('/cases/stats/dashboard'),
+  getDashboardStats: () => api.get<DashboardStatsResponse>('/cases/stats/dashboard'),
   list: (params?: { skip?: number; limit?: number; status?: string }) =>
-    api.get('/cases/', { params }),
+    api.get<CaseListResponse>('/cases/', { params }),
   create: (data: { title: string; description?: string; priority?: string }) =>
-    api.post('/cases/', data),
-  get: (id: number) => api.get(`/cases/${id}`),
+    api.post<CaseItem>('/cases/', data),
+  get: (id: number) => api.get<CaseItem>(`/cases/${id}`),
   update: (id: number, data: Partial<{ title: string; description: string; status: string; priority: string }>) =>
-    api.put(`/cases/${id}`, data),
-  delete: (id: number) => api.delete(`/cases/${id}`),
+    api.put<CaseItem>(`/cases/${id}`, data),
+  delete: (id: number) => api.delete<{ message: string }>(`/cases/${id}`),
 }
 
 // ─── Evidence ─────────────────────────────────────────────────────────────────
@@ -57,79 +81,79 @@ export const evidenceApi = {
     const form = new FormData()
     form.append('case_id', String(caseId))
     files.forEach((f) => form.append('files', f))
-    return api.post('/evidence/upload', form, {
+    return api.post<EvidenceItem[]>('/evidence/upload', form, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
   },
   list: (params?: { skip?: number; limit?: number; search?: string; file_type?: string }) =>
-    api.get('/evidence/', { params }),
-  getCaseEvidence: (caseId: number) => api.get(`/evidence/case/${caseId}`),
-  get: (id: number) => api.get(`/evidence/${id}`),
+    api.get<EvidenceListResponse>('/evidence/', { params }),
+  getCaseEvidence: (caseId: number) => api.get<EvidenceItem[]>(`/evidence/case/${caseId}`),
+  get: (id: number) => api.get<EvidenceItem>(`/evidence/${id}`),
   patch: (id: number, data: { description?: string; tags?: string[]; verification_status?: string }) =>
-    api.patch(`/evidence/${id}`, data),
-  delete: (id: number) => api.delete(`/evidence/${id}`),
+    api.patch<EvidenceItem>(`/evidence/${id}`, data),
+  delete: (id: number) => api.delete<{ message: string }>(`/evidence/${id}`),
   download: (id: number) => api.get(`/evidence/download/${id}`, { responseType: 'blob' }),
-  getCustody: (id: number) => api.get(`/evidence/${id}/custody`),
+  getCustody: (id: number) => api.get<ChainOfCustodyLog[]>(`/evidence/${id}/custody`),
 }
 
 // ─── Parser & Events ──────────────────────────────────────────────────────────
 export const parserApi = {
-  parse: (evidenceId: number) => api.post(`/parser/parse/${evidenceId}`),
-  parseAll: (caseId: number) => api.post(`/parser/parse-all/${caseId}`),
-  getStatus: (evidenceId: number) => api.get(`/parser/status/${evidenceId}`),
+  parse: (evidenceId: number) => api.post<ParserStatusResponse>(`/parser/parse/${evidenceId}`),
+  parseAll: (caseId: number) => api.post<ParserStatusResponse[]>(`/parser/parse-all/${caseId}`),
+  getStatus: (evidenceId: number) => api.get<ParserStatusResponse>(`/parser/status/${evidenceId}`),
 }
 
 export const eventsApi = {
   listCaseEvents: (caseId: number, params?: { skip?: number; limit?: number; search?: string; severity?: string }) =>
-    api.get(`/parser/events/case/${caseId}`, { params }),
-  getDetails: (eventId: number) => api.get(`/parser/events/${eventId}`),
+    api.get<EventListResponse>(`/parser/events/case/${caseId}`, { params }),
+  getDetails: (eventId: number) => api.get<EventItem>(`/parser/events/${eventId}`),
 }
 
 // ─── Normalization Engine ─────────────────────────────────────────────────────
 export const normalizationApi = {
-  normalize: (evidenceId: number) => api.post(`/normalize/${evidenceId}`),
-  normalizeCase: (caseId: number) => api.post(`/normalize/case/${caseId}`),
-  getStatus: (evidenceId: number) => api.get(`/normalize/status/${evidenceId}`),
+  normalize: (evidenceId: number) => api.post<NormalizationStatusResponse>(`/normalize/${evidenceId}`),
+  normalizeCase: (caseId: number) => api.post<NormalizationStatusResponse[]>(`/normalize/case/${caseId}`),
+  getStatus: (evidenceId: number) => api.get<NormalizationStatusResponse>(`/normalize/status/${evidenceId}`),
   listNormalizedEvents: (caseId: number, params?: { skip?: number; limit?: number; search?: string; category?: string; severity?: string }) =>
-    api.get(`/normalized-events/${caseId}`, { params }),
-  getDetail: (eventId: number) => api.get(`/normalized-events/detail/${eventId}`),
+    api.get<NormalizedEventListResponse>(`/normalized-events/${caseId}`, { params }),
+  getDetail: (eventId: number) => api.get<NormalizedEventItem>(`/normalized-events/detail/${eventId}`),
 }
 
 // ─── Knowledge Graph Engine ───────────────────────────────────────────────────
 export const graphApi = {
-  buildCase: (caseId: number) => api.post(`/graph/build/${caseId}`),
-  buildEvidence: (evidenceId: number) => api.post(`/graph/build/evidence/${evidenceId}`),
-  getCaseGraph: (caseId: number) => api.get(`/graph/${caseId}`),
-  getStatistics: (caseId: number) => api.get(`/graph/statistics/${caseId}`),
-  deleteGraph: (caseId: number) => api.delete(`/graph/${caseId}`),
+  buildCase: (caseId: number) => api.post<GraphBuildResponse>(`/graph/build/${caseId}`),
+  buildEvidence: (evidenceId: number) => api.post<GraphBuildResponse>(`/graph/build/evidence/${evidenceId}`),
+  getCaseGraph: (caseId: number) => api.get<GraphPayloadResponse>(`/graph/${caseId}`),
+  getStatistics: (caseId: number) => api.get<GraphStatisticsResponse>(`/graph/statistics/${caseId}`),
+  deleteGraph: (caseId: number) => api.delete<{ message: string }>(`/graph/${caseId}`),
 }
 
 // ─── CSP Reasoning Engine ─────────────────────────────────────────────────────
 export const cspApi = {
-  validate: (caseId: number) => api.post(`/csp/validate/${caseId}`),
-  getStatus: (caseId: number) => api.get(`/csp/status/${caseId}`),
-  getResults: (caseId: number) => api.get(`/csp/results/${caseId}`),
-  getViolations: (caseId: number) => api.get(`/csp/violations/${caseId}`),
+  validate: (caseId: number) => api.post<CSPValidateResponse>(`/csp/validate/${caseId}`),
+  getStatus: (caseId: number) => api.get<CSPValidateResponse>(`/csp/status/${caseId}`),
+  getResults: (caseId: number) => api.get<CSPResultsResponse>(`/csp/results/${caseId}`),
+  getViolations: (caseId: number) => api.get<unknown[]>(`/csp/violations/${caseId}`),
 }
 
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 export const timelineApi = {
   get: (caseId: number, params?: { skip?: number; limit?: number; severity?: string }) =>
-    api.get(`/timeline/${caseId}`, { params }),
-  getSuspicious: (caseId: number) => api.get(`/timeline/${caseId}/suspicious`),
+    api.get<TimelineResponse>(`/timeline/${caseId}`, { params }),
+  getSuspicious: (caseId: number) => api.get<TimelineResponse>(`/timeline/${caseId}/suspicious`),
 }
 
 // ─── AI ───────────────────────────────────────────────────────────────────────
 export const aiApi = {
   analyze: (caseId: number, question?: string) =>
-    api.post('/ai/analyze', { case_id: caseId, question }),
+    api.post<AIAnalyzeResponse>('/ai/analyze', { case_id: caseId, question }),
   generateReport: (caseId: number, reportType = 'full') =>
-    api.post('/ai/report', { case_id: caseId, report_type: reportType }),
-  getChatHistory: (caseId: number) => api.get(`/ai/chat?case_id=${caseId}`),
+    api.post<AIReportResponse>('/ai/report', { case_id: caseId, report_type: reportType }),
+  getChatHistory: (caseId: number) => api.get<AIChatHistoryResponse>(`/ai/chat?case_id=${caseId}`),
 }
 
 // ─── Reports ──────────────────────────────────────────────────────────────────
 export const reportsApi = {
-  list: (caseId: number) => api.get(`/reports/case/${caseId}`),
+  list: (caseId: number) => api.get<ReportItem[]>(`/reports/case/${caseId}`),
   download: (reportId: number) => api.get(`/reports/${reportId}/download`, { responseType: 'blob' }),
 }

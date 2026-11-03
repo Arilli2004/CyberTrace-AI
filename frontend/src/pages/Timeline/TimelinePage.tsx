@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Clock, Filter, AlertTriangle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { timelineApi, casesApi } from '@/api/client'
+import type { CaseListResponse, TimelineResponse } from '@/types/api'
 
 const SEVERITY_COLORS: Record<string, string> = {
   critical: 'var(--color-critical)',
@@ -17,14 +19,14 @@ export default function TimelinePage() {
   const { data: casesData } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 50 }),
-    select: (res) => res.data?.cases || [],
+    select: (res: AxiosResponse<CaseListResponse>) => res.data?.cases || [],
   })
 
   const { data: timeline, isLoading } = useQuery({
     queryKey: ['timeline', selectedCase],
     queryFn: () => timelineApi.get(selectedCase!, { limit: 200 }),
     enabled: !!selectedCase,
-    select: (res) => res.data?.events || [],
+    select: (res: AxiosResponse<TimelineResponse>) => res.data?.events || [],
   })
 
   const events = timeline?.filter((e: any) => {

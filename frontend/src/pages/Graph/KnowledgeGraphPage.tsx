@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { Network, Cpu, RefreshCw, Search, Zap, Layers, Server, User, Terminal, FileText, Globe } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { graphApi, casesApi } from '@/api/client'
+import type {
+  CaseListResponse,
+  GraphPayloadResponse,
+  GraphStatisticsResponse,
+  GraphBuildResponse,
+} from '@/types/api'
 import toast from 'react-hot-toast'
 
 export default function KnowledgeGraphPage() {
@@ -15,7 +22,7 @@ export default function KnowledgeGraphPage() {
   const { data: casesData } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 100 }),
-    select: (res) => res.data?.cases || [],
+    select: (res: AxiosResponse<CaseListResponse>) => res.data?.cases || [],
   })
 
   const activeCaseId = selectedCase || (casesData && casesData.length > 0 ? casesData[0].id : null)
@@ -24,19 +31,19 @@ export default function KnowledgeGraphPage() {
     queryKey: ['graph', activeCaseId],
     queryFn: () => graphApi.getCaseGraph(activeCaseId!),
     enabled: !!activeCaseId,
-    select: (res) => res.data,
+    select: (res: AxiosResponse<GraphPayloadResponse>) => res.data,
   })
 
   const { data: statsData } = useQuery({
     queryKey: ['graph-stats', activeCaseId],
     queryFn: () => graphApi.getStatistics(activeCaseId!),
     enabled: !!activeCaseId,
-    select: (res) => res.data,
+    select: (res: AxiosResponse<GraphStatisticsResponse>) => res.data,
   })
 
   const buildMutation = useMutation({
     mutationFn: (caseId: number) => graphApi.buildCase(caseId),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<GraphBuildResponse>) => {
       queryClient.invalidateQueries({ queryKey: ['graph', activeCaseId] })
       queryClient.invalidateQueries({ queryKey: ['graph-stats', activeCaseId] })
       toast.success(`Knowledge Graph built! ${res.data.node_count} nodes & ${res.data.edge_count} edges constructed.`)

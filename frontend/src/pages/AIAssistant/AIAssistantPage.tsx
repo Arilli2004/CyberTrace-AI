@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Send, Sparkles, RefreshCw, Cpu, ShieldCheck } from 'lucide-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { aiApi, casesApi } from '@/api/client'
+import type { CaseListResponse, AIAnalyzeResponse, AIReportResponse } from '@/types/api'
 import toast from 'react-hot-toast'
 
 interface Message { role: 'user' | 'ai'; content: string; timestamp: Date }
@@ -20,7 +22,7 @@ export default function AIAssistantPage() {
   const { data: casesData } = useQuery({
     queryKey: ['cases'],
     queryFn: () => casesApi.list({ limit: 50 }),
-    select: (res) => res.data?.cases || [],
+    select: (res: AxiosResponse<CaseListResponse>) => res.data?.cases || [],
   })
 
   // Auto-select first case if available
@@ -32,7 +34,7 @@ export default function AIAssistantPage() {
 
   const analyzeMutation = useMutation({
     mutationFn: (userQ: string) => aiApi.analyze(selectedCase!, userQ),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<AIAnalyzeResponse>) => {
       setMessages((prev) => [
         ...prev,
         { role: 'ai', content: res.data.analysis, timestamp: new Date() }
@@ -43,7 +45,7 @@ export default function AIAssistantPage() {
 
   const reportMutation = useMutation({
     mutationFn: () => aiApi.generateReport(selectedCase!),
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse<AIReportResponse>) => {
       setMessages((prev) => [
         ...prev,
         { role: 'ai', content: `📄 **FULL INVESTIGATION REPORT (Gemma AI)**\n\n${res.data.report}`, timestamp: new Date() }

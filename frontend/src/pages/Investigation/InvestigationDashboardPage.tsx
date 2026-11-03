@@ -11,7 +11,9 @@ import {
   Globe, Lock, Eye, Cpu, HardDrive
 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
+import type { AxiosResponse } from 'axios'
 import { casesApi, graphApi, cspApi } from '@/api/client'
+import type { CaseListResponse, GraphPayloadResponse, CSPResultsResponse } from '@/types/api'
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 interface GraphNode { uuid_id: string; type: string; label: string; properties: Record<string, unknown> }
@@ -34,19 +36,19 @@ export default function InvestigationDashboardPage() {
 
   const { data: cases } = useQuery({
     queryKey: ['cases'], queryFn: () => casesApi.list({ limit: 50 }),
-    select: r => r.data?.cases ?? r.data ?? [],
+    select: (r: AxiosResponse<CaseListResponse>) => r.data?.cases ?? (r.data as any) ?? [],
   })
   const [caseIdx, setCaseIdx] = useState(0)
   const caseId = paramCaseId ? Number(paramCaseId) : (cases?.[caseIdx]?.id ?? null)
 
   const { data: graphData, isLoading } = useQuery({
     queryKey: ['graph', caseId], queryFn: () => graphApi.getCaseGraph(caseId!),
-    enabled: !!caseId, select: r => r.data,
+    enabled: !!caseId, select: (r: AxiosResponse<GraphPayloadResponse>) => r.data,
   })
 
   const { data: cspData } = useQuery({
     queryKey: ['csp-results', caseId], queryFn: () => cspApi.getResults(caseId!),
-    enabled: !!caseId, select: r => r.data,
+    enabled: !!caseId, select: (r: AxiosResponse<CSPResultsResponse>) => r.data,
   })
 
   const stages: AttackStage[] = useMemo(() => {
