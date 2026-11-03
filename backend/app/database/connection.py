@@ -53,6 +53,7 @@ async def init_db():
     )
 
     # 2. Create tables
+    import app.models  # Register all ORM models with Base.metadata
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 

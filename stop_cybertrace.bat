@@ -1,29 +1,33 @@
 @echo off
-title CyberTrace AI - Stop All Services
-cls
-echo ======================================================================
-echo   CYBERTRACE AI - STOPPING ALL SERVICES (WINDOWS)
-echo ======================================================================
+title CyberTrace AI - Stopping Services...
+color 0C
+
+echo ===============================================================================
+echo                CYBERTRACE AI - TERMINATING ALL SERVICES
+echo ===============================================================================
 echo.
 
-echo [1/2] Terminating FastAPI Backend process on port 8000...
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8000 ^| findstr LISTENING') do (
-    taskkill /F /PID %%a >nul 2>nul
-    echo       - Process %%a terminated.
-)
+:: Ensure we are in the script's root directory
+cd /d "%~dp0"
 
-echo [2/2] Terminating React Frontend process on port 3000...
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :3000 ^| findstr LISTENING') do (
-    taskkill /F /PID %%a >nul 2>nul
-    echo       - Process %%a terminated.
-)
-
-rem Additional safety cleanup for uvicorn and vite processes
-powershell -Command "Stop-Process -Name 'node' -ErrorAction SilentlyContinue" >nul 2>nul
+echo [*] Stopping backend processes on port 8000 (FastAPI / Uvicorn)...
+powershell -NoProfile -Command "$pids = Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($pids) { $pids | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue; Write-Host ('    [+] Terminated PID: ' + $_) } } else { Write-Host '    [-] No backend process found on port 8000.' }"
 
 echo.
-echo ======================================================================
-echo   [OK] All CyberTrace AI services stopped cleanly!
-echo ======================================================================
+echo [*] Stopping frontend processes on port 3000 (Vite / Node.js)...
+powershell -NoProfile -Command "$pids = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($pids) { $pids | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue; Write-Host ('    [+] Terminated PID: ' + $_) } } else { Write-Host '    [-] No frontend process found on port 3000.' }"
+
 echo.
-pause
+echo [*] Closing associated command windows...
+taskkill /FI "WINDOWTITLE eq CyberTrace-AI-Backend*" /T /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq CyberTrace-AI-Frontend*" /T /F >nul 2>&1
+
+echo.
+echo ===============================================================================
+echo               ALL CYBERTRACE AI SERVICES ARE NOW STOPPED!
+echo ===============================================================================
+echo.
+echo Ports 8000 and 3000 have been freed successfully.
+echo.
+timeout /t 3 /nobreak >nul
+exit
