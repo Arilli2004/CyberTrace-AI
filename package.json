@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CyberTrace AI — Intelligent Digital Evidence Reconstruction System",
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && uvicorn app.main:app --reload --port 8000",
     "install:frontend": "cd frontend && npm install",
